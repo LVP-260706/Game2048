@@ -19,3 +19,23 @@
 1742726029 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\window.cpp
 	"Window.h"
 
+1742725948 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\image.cpp
+	"Image.h"
+
+1742725898 c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\image.h
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+
+1742743628 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\main.cpp
+	"Window.h"
+	"Image.h"
+
+1742725007 c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\window.h
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+
+1742726029 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\window.cpp
+	"Window.h"
+
