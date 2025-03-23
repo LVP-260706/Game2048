@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1742726014 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\main.cpp
+	"Window.h"
+	"Image.h"
+
+1742725007 c:\users\pc\onedrive\máy tính\laptrinhnangcao\window.h
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+
+1742725898 c:\users\pc\onedrive\máy tính\laptrinhnangcao\image.h
+	<iostream>
+	<SDL.h>
+	<SDL_image.h>
+
+1742725948 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\image.cpp
+	"Image.h"
+
+1742726029 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\window.cpp
+	"Window.h"
+
