@@ -1,6 +1,7 @@
 #include "Window.h"
 #include "Image.h"
 #include "Grid.h"
+#include "Logic.h"
 using namespace std;
 const int SCREEN_WIDTH = 800, SCREEN_HEIGHT = 600;
 
@@ -34,10 +35,31 @@ int main(int argc, char* argv[])
         while (SDL_PollEvent(&event))
         {
             if (event.type == SDL_QUIT) running = false;
+            else if (event.type == SDL_KEYDOWN)
+            {
+//                bool moved = false;
+                switch (event.key.keysym.sym)
+                {
+                    case SDLK_LEFT:
+                        moveLeft();
+                        break;
+                    case SDLK_RIGHT:
+                        moveRight();
+                        break;
+                    case SDLK_UP:
+                        moveUp();
+                        break;
+                    case SDLK_DOWN:
+                        moveDown();
+                        break;
+                }
+            }
         }
+
         SDL_SetRenderDrawColor(renderer, 250, 248, 239, 255);
         SDL_RenderClear(renderer);
         image.renderer(0, 0, 800, 600);
+
         drawBoard(renderer, SCREEN_WIDTH, SCREEN_HEIGHT, font);
         SDL_RenderPresent(renderer);
     }
