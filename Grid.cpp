@@ -16,14 +16,15 @@ map<int, SDL_Color> numberColors =
     {2048, {246, 94, 59, 255}}
 };
 
-int board[GRID_SIZE][GRID_SIZE] =
+int board[GRID_SIZE][GRID_SIZE] = {0};
+/*
 {
     {0   , 0   , 0   , 0   },
     {0   , 2   , 4   , 0   },
     {0   , 2   , 4   , 0   },
     {0   , 0   , 0   , 0   }
 };
-
+*/
 void drawNumber(SDL_Renderer* renderer, TTF_Font* font, const Cell& cell)
 {
     if (cell.value == 0) return;

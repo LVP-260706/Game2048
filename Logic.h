@@ -8,5 +8,5 @@ void moveRight();
 void moveUp();
 void moveDown();
 void spawnRandomNumber();
-// bool canMove();
+bool canMove();
 #endif // LOGIC_H

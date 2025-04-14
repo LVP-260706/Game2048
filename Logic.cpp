@@ -60,7 +60,11 @@ void moveLeft()
         vector<int> newRow = compressAndMerge(currentRow, moved);
         for (int col = 0; col < GRID_SIZE; col++)
         {
-            board[row][col] = newRow[col];
+            if (board[row][col] != newRow[col])
+            {
+                moved = true;
+                board[row][col] = newRow[col];
+            }
         }
     }
     if (moved) spawnRandomNumber();
@@ -80,7 +84,11 @@ void moveRight()
         vector<int> newRow = compressAndMerge(currentRow, moved);
         for (int col = 0; col < GRID_SIZE; col++)
         {
-            board[row][GRID_SIZE - 1 - col] = newRow[col];
+            if (board[row][GRID_SIZE - 1 - col] != newRow[col])
+            {
+                moved = true;
+                board[row][GRID_SIZE - 1 - col] = newRow[col];
+            }
         }
     }
     if (moved) spawnRandomNumber();
@@ -100,7 +108,11 @@ void moveUp()
         vector<int> newCol = compressAndMerge(currentCol, moved);
         for (int row = 0; row < GRID_SIZE; row++)
         {
-            board[row][col] = newCol[row];
+            if (board[row][col] != newCol[row])
+            {
+                moved = true;
+                board[row][col] = newCol[row];
+            }
         }
     }
     if (moved) spawnRandomNumber();
@@ -120,8 +132,26 @@ void moveDown()
         vector<int> newCol = compressAndMerge(currentCol, moved);
         for (int row = 0; row < GRID_SIZE; row++)
         {
-            board[GRID_SIZE - 1 - row][col] = newCol[row];
+            if (board[GRID_SIZE - 1 - row][col] != newCol[row])
+            {
+                moved = true;
+                board[GRID_SIZE - 1 - row][col] = newCol[row];
+            }
         }
     }
     if (moved) spawnRandomNumber();
+}
+
+bool canMove()
+{
+    for (int row = 0; row < GRID_SIZE; row++)
+    {
+        for (int col = 0; col < GRID_SIZE; col++)
+        {
+            if (board[row][col] == 0) return true;
+            if (col + 1 < GRID_SIZE && board[row][col] == board[row][col + 1]) return true;
+            if (row + 1 < GRID_SIZE && board[row][col] == board[row + 1][col]) return true;
+        }
+    }
+    return false;
 }

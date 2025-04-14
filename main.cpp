@@ -17,7 +17,6 @@ int main(int argc, char* argv[])
     SDL_Renderer* renderer = window.getRenderer();
     Image image("Image/2048_mainImage.png", renderer);
 
-
     TTF_Font* font = TTF_OpenFont("Image/Roboto-Regular.ttf", 25);
     if (!font)
     {
@@ -29,15 +28,18 @@ int main(int argc, char* argv[])
     }
 
     bool running = true;
+    bool gameOver = false;
+    spawnRandomNumber();
+    spawnRandomNumber();
+
     SDL_Event event;
     while (running)
     {
         while (SDL_PollEvent(&event))
         {
             if (event.type == SDL_QUIT) running = false;
-            else if (event.type == SDL_KEYDOWN)
+            else if (event.type == SDL_KEYDOWN && !gameOver)
             {
-//                bool moved = false;
                 switch (event.key.keysym.sym)
                 {
                     case SDLK_LEFT:
@@ -53,14 +55,38 @@ int main(int argc, char* argv[])
                         moveDown();
                         break;
                 }
+                if (!canMove()) gameOver = true;
+            }
+            else if (event.type == SDL_KEYDOWN && gameOver)
+            {
+                if (event.key.keysym.sym == SDLK_r)
+                {
+                    memset(board, 0, sizeof(board));
+                    spawnRandomNumber();
+                    spawnRandomNumber();
+                    gameOver = false;
+                }
             }
         }
 
         SDL_SetRenderDrawColor(renderer, 250, 248, 239, 255);
         SDL_RenderClear(renderer);
         image.renderer(0, 0, 800, 600);
-
         drawBoard(renderer, SCREEN_WIDTH, SCREEN_HEIGHT, font);
+
+        if (gameOver)
+        {
+            SDL_Color color = {255, 0, 0};
+            SDL_Surface* surface = TTF_RenderText_Solid(font, "Game Over! Press R to restart", color);
+            SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+            int textW, textH;
+            SDL_QueryTexture(texture, NULL, NULL, &textW, &textH);
+            SDL_Rect textRect = { (SCREEN_WIDTH - textW) / 2, SCREEN_HEIGHT - 80, textW, textH };
+            SDL_RenderCopy(renderer, texture, NULL, &textRect);
+            SDL_FreeSurface(surface);
+            SDL_DestroyTexture(texture);
+        }
+
         SDL_RenderPresent(renderer);
     }
     TTF_CloseFont(font);
