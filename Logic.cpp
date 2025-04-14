@@ -1,5 +1,7 @@
 #include "Logic.h"
-extern int board[GRID_SIZE][GRID_SIZE];
+
+int score = 0;
+int best = 0;
 
 void spawnRandomNumber()
 {
@@ -23,7 +25,7 @@ void spawnRandomNumber()
     }
 }
 
-vector<int> compressAndMerge(vector<int> line, bool &moved)
+vector<int> compressAndMerge(vector<int> line)
 {
     vector<int> result;
     for (int i : line)
@@ -37,8 +39,8 @@ vector<int> compressAndMerge(vector<int> line, bool &moved)
         if (i + 1 < GRID_SIZE && result[i] == result[i + 1])
         {
             merged.push_back(result[i] * 2);
+            score += result[i] * 2;
             i++;
-            moved = true;
         }
         else merged.push_back(result[i]);
     }
@@ -57,7 +59,7 @@ void moveLeft()
             if (board[row][col] != 0) currentRow.push_back(board[row][col]);
         }
 
-        vector<int> newRow = compressAndMerge(currentRow, moved);
+        vector<int> newRow = compressAndMerge(currentRow);
         for (int col = 0; col < GRID_SIZE; col++)
         {
             if (board[row][col] != newRow[col])
@@ -67,7 +69,11 @@ void moveLeft()
             }
         }
     }
-    if (moved) spawnRandomNumber();
+    if (moved)
+    {
+        if (score > best) best = score;
+        spawnRandomNumber();
+    }
 }
 
 void moveRight()
@@ -81,7 +87,7 @@ void moveRight()
             if (board[row][col] != 0) currentRow.push_back(board[row][col]);
         }
 
-        vector<int> newRow = compressAndMerge(currentRow, moved);
+        vector<int> newRow = compressAndMerge(currentRow);
         for (int col = 0; col < GRID_SIZE; col++)
         {
             if (board[row][GRID_SIZE - 1 - col] != newRow[col])
@@ -91,7 +97,11 @@ void moveRight()
             }
         }
     }
-    if (moved) spawnRandomNumber();
+    if (moved)
+    {
+        if (score > best) best = score;
+        spawnRandomNumber();
+    }
 }
 
 void moveUp()
@@ -105,7 +115,7 @@ void moveUp()
             if (board[row][col] != 0) currentCol.push_back(board[row][col]);
         }
 
-        vector<int> newCol = compressAndMerge(currentCol, moved);
+        vector<int> newCol = compressAndMerge(currentCol);
         for (int row = 0; row < GRID_SIZE; row++)
         {
             if (board[row][col] != newCol[row])
@@ -115,7 +125,11 @@ void moveUp()
             }
         }
     }
-    if (moved) spawnRandomNumber();
+    if (moved)
+    {
+        if (score > best) best = score;
+        spawnRandomNumber();
+    }
 }
 
 void moveDown()
@@ -129,7 +143,7 @@ void moveDown()
             if (board[row][col] != 0) currentCol.push_back(board[row][col]);
         }
 
-        vector<int> newCol = compressAndMerge(currentCol, moved);
+        vector<int> newCol = compressAndMerge(currentCol);
         for (int row = 0; row < GRID_SIZE; row++)
         {
             if (board[GRID_SIZE - 1 - row][col] != newCol[row])
@@ -139,7 +153,11 @@ void moveDown()
             }
         }
     }
-    if (moved) spawnRandomNumber();
+    if (moved)
+    {
+        if (score > best) best = score;
+        spawnRandomNumber();
+    }
 }
 
 bool canMove()

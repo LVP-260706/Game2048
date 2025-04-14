@@ -3,7 +3,7 @@
 #include "Grid.h"
 #include "Logic.h"
 using namespace std;
-const int SCREEN_WIDTH = 800, SCREEN_HEIGHT = 600;
+const int SCREEN_WIDTH = 700, SCREEN_HEIGHT = 650;
 
 int main(int argc, char* argv[])
 {
@@ -71,7 +71,7 @@ int main(int argc, char* argv[])
 
         SDL_SetRenderDrawColor(renderer, 250, 248, 239, 255);
         SDL_RenderClear(renderer);
-        image.renderer(0, 0, 800, 600);
+        image.renderer(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
         drawBoard(renderer, SCREEN_WIDTH, SCREEN_HEIGHT, font);
 
         if (gameOver)

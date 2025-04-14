@@ -62,7 +62,7 @@ void drawBoard(SDL_Renderer* renderer, int windowWidth, int windowHeight, TTF_Fo
     int boardHeight = boardWidth;
 
     int offsetX = (windowWidth - boardWidth) / 2;
-    int offsetY = (windowHeight - boardHeight) / 2;
+    int offsetY = (windowHeight - boardHeight) / 2 + 55;
 
     for (int row = 0; row < GRID_SIZE; row++)
     {

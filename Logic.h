@@ -3,6 +3,8 @@
 
 #include "Grid.h"
 
+extern int score, best;
+
 void moveLeft();
 void moveRight();
 void moveUp();
