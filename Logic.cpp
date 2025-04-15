@@ -185,3 +185,54 @@ bool checkWin()
     }
     return false;
 }
+
+void resetGame()
+{
+    memset(board, 0, sizeof(board));
+    score = 0;
+    spawnRandomNumber();
+    spawnRandomNumber();
+}
+
+void handleKey(SDL_Event event, bool& gameOver, bool& win)
+{
+    if (!gameOver && !win)
+    {
+        switch (event.key.keysym.sym)
+        {
+            case SDLK_LEFT:
+                moveLeft();
+                break;
+            case SDLK_RIGHT:
+                moveRight();
+                break;
+            case SDLK_UP:
+                moveUp();
+                break;
+            case SDLK_DOWN:
+                moveDown();
+                break;
+        }
+        if (checkWin()) win = true;
+        if (!canMove()) gameOver = true;
+    }
+    else if (gameOver || win)
+    {
+        if (event.key.keysym.sym == SDLK_r)
+        {
+            resetGame();
+            gameOver = false;
+            win = false;
+        }
+    }
+/*    else if (win)
+    {
+        if (event.key.keysym.sym == SDLK_r)
+        {
+            resetGame();
+            win = false;
+        }
+        else if (event.key.keysym.sym == SDLK_c) win = false;
+    }
+*/
+}

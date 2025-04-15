@@ -12,4 +12,6 @@ void moveDown();
 void spawnRandomNumber();
 bool canMove();
 bool checkWin();
+void handleKey(SDL_Event event, bool& gameOver, bool& win);
+void resetGame();
 #endif // LOGIC_H

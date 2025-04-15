@@ -23,12 +23,6 @@ void renderScore(SDL_Renderer* renderer, TTF_Font* font, int score, int x, int y
 
 int main(int argc, char* argv[])
 {
-    if (TTF_Init() == -1)
-    {
-        cerr << TTF_GetError() << endl;
-        return -1;
-    }
-
     Window window("Game 2048", SCREEN_WIDTH, SCREEN_HEIGHT);
     SDL_Renderer* renderer = window.getRenderer();
     Image image("Image/2048_mainImage.png", renderer);
@@ -39,9 +33,6 @@ int main(int argc, char* argv[])
     if (!font)
     {
         cerr << TTF_GetError() << endl;
-        SDL_DestroyRenderer(renderer);
-        TTF_Quit();
-        SDL_Quit();
         return -1;
     }
 
@@ -59,38 +50,7 @@ int main(int argc, char* argv[])
             if (event.type == SDL_QUIT) running = false;
             else if (event.type == SDL_KEYDOWN)
             {
-                if (!gameOver && !win)
-                {
-                    switch (event.key.keysym.sym)
-                    {
-                        case SDLK_LEFT:
-                            moveLeft();
-                            break;
-                        case SDLK_RIGHT:
-                            moveRight();
-                            break;
-                        case SDLK_UP:
-                            moveUp();
-                            break;
-                        case SDLK_DOWN:
-                            moveDown();
-                            break;
-                    }
-                    if (checkWin()) win = true;
-                    if (!canMove()) gameOver = true;
-                }
-                else if (gameOver || win)
-                {
-                    if (event.key.keysym.sym == SDLK_r)
-                    {
-                        memset(board, 0, sizeof(board));
-                        score = 0;
-                        spawnRandomNumber();
-                        spawnRandomNumber();
-                        gameOver = false;
-                        win = false;
-                    }
-                }
+                handleKey(event, gameOver, win);
             }
         }
 
@@ -134,6 +94,5 @@ int main(int argc, char* argv[])
     }
 
     TTF_CloseFont(font);
-    TTF_Quit();
     return 0;
 }
