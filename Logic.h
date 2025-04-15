@@ -11,4 +11,5 @@ void moveUp();
 void moveDown();
 void spawnRandomNumber();
 bool canMove();
+bool checkWin();
 #endif // LOGIC_H

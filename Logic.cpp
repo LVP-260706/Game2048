@@ -173,3 +173,15 @@ bool canMove()
     }
     return false;
 }
+
+bool checkWin()
+{
+    for (int row = 0; row < GRID_SIZE; row++)
+    {
+        for (int col = 0; col < GRID_SIZE; col++)
+        {
+            if (board[row][col] == 2048) return true;
+        }
+    }
+    return false;
+}

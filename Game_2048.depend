@@ -27,11 +27,12 @@
 	<SDL.h>
 	<SDL_image.h>
 
-1744623275 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\main.cpp
+1744731189 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\main.cpp
 	"Window.h"
 	"Image.h"
 	"Grid.h"
 	"Logic.h"
+	<string>
 
 1742725007 c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\window.h
 	<iostream>
@@ -50,9 +51,9 @@
 	<map>
 	<vector>
 
-1744620577 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\logic.cpp
+1744731224 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\logic.cpp
 	"Logic.h"
 
-1744658437 c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\logic.h
+1744731105 c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\logic.h
 	"Grid.h"
 
