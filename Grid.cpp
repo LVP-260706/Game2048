@@ -17,14 +17,7 @@ map<int, SDL_Color> numberColors =
 };
 
 int board[GRID_SIZE][GRID_SIZE] = {0};
-/*
-{
-    {0   , 0   , 0   , 0   },
-    {0   , 2   , 4   , 0   },
-    {0   , 2   , 4   , 0   },
-    {0   , 0   , 0   , 0   }
-};
-*/
+
 void drawNumber(SDL_Renderer* renderer, TTF_Font* font, const Cell& cell)
 {
     if (cell.value == 0) return;
@@ -87,4 +80,18 @@ void drawBoard(SDL_Renderer* renderer, int windowWidth, int windowHeight, TTF_Fo
             drawNumber(renderer, font, cell);
         }
     }
+}
+
+void renderScore(SDL_Renderer* renderer, TTF_Font* font, int score, int x, int y)
+{
+    SDL_Color color = {255, 255, 255};
+    string text = to_string(score);
+    SDL_Surface* surface = TTF_RenderText_Blended(font, text.c_str(), color);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+    int textW, textH;
+    SDL_QueryTexture(texture, NULL, NULL, &textW, &textH);
+    SDL_Rect textRect = {x - textW / 2, y - textH / 2 + 12, textW, textH};
+    SDL_RenderCopy(renderer, texture, NULL, &textRect);
+    SDL_FreeSurface(surface);
+    SDL_DestroyTexture(texture);
 }

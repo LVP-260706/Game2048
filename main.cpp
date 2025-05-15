@@ -5,33 +5,20 @@
 
 #include <string>
 using namespace std;
-const int SCREEN_WIDTH = 700, SCREEN_HEIGHT = 650;
-
-void renderScore(SDL_Renderer* renderer, TTF_Font* font, int score, int x, int y)
-{
-    SDL_Color color = {255, 255, 255};
-    string text = to_string(score);
-    SDL_Surface* surface = TTF_RenderText_Blended(font, text.c_str(), color);
-    SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-    int textW, textH;
-    SDL_QueryTexture(texture, NULL, NULL, &textW, &textH);
-    SDL_Rect textRect = {x - textW / 2, y - textH / 2 + 12, textW, textH};
-    SDL_RenderCopy(renderer, texture, NULL, &textRect);
-    SDL_FreeSurface(surface);
-    SDL_DestroyTexture(texture);
-}
+const int SCREEN_WIDTH = 800, SCREEN_HEIGHT = 600;
 
 int main(int argc, char* argv[])
 {
     Window window("Game 2048", SCREEN_WIDTH, SCREEN_HEIGHT);
     SDL_Renderer* renderer = window.getRenderer();
 
-    Image mainBackground("Image/2048_mainImage.png", renderer);
+    Image mainBackground("Image/main.png", renderer);
     Image startButton("Image/start.png", renderer);
     SDL_Rect startButtonRect = {SCREEN_WIDTH / 2 - 100, SCREEN_HEIGHT - 180, 200, 80};
 
     Image scoreBox("Image/score.png", renderer);
     Image bestBox("Image/best.png", renderer);
+    Image backGround("Image/background.png", renderer);
 
     TTF_Font* font = TTF_OpenFont("Image/Roboto-Regular.ttf", 25);
     if (!font)
@@ -77,30 +64,27 @@ int main(int argc, char* argv[])
         {
             SDL_SetRenderDrawColor(renderer, 220, 218, 209, 255);
             SDL_RenderClear(renderer);
+            backGround.renderer(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
             scoreBox.renderer(149, 95, 140, 80);
             bestBox.renderer(410, 95, 140, 80);
-            renderScore(renderer, font, score, 219, 138);
+            renderScore(renderer, font, score, 221, 138);
             renderScore(renderer, font, best, 481, 138);
 
             drawBoard(renderer, SCREEN_WIDTH, SCREEN_HEIGHT, font);
 
-            if (gameOver)
+            if (gameOver || win)
             {
-                SDL_Color color = {255, 0, 0};
-                SDL_Surface* surface = TTF_RenderText_Solid(font, "Game Over! Press R to restart", color);
-                SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
-                int textW, textH;
-                SDL_QueryTexture(texture, NULL, NULL, &textW, &textH);
-                SDL_Rect textRect = { (SCREEN_WIDTH - textW) / 2, (SCREEN_HEIGHT - textH) / 2 + 45, textW, textH };
-                SDL_RenderCopy(renderer, texture, NULL, &textRect);
-                SDL_FreeSurface(surface);
-                SDL_DestroyTexture(texture);
-            }
-
-            if (win)
-            {
-                SDL_Color color = {0, 128, 0};
-                SDL_Surface* surface = TTF_RenderText_Solid(font, "You win! Press R to restart", color);
+                SDL_Surface* surface;
+                if (gameOver)
+                {
+                    SDL_Color color = {255, 0, 0};
+                    surface = TTF_RenderText_Solid(font, "Game Over! Press R to restart", color);
+                }
+                else if (win)
+                {
+                    SDL_Color color = {0, 128, 0};
+                    surface = TTF_RenderText_Solid(font, "You win! Press R to restart", color);
+                }
                 SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
                 int textW, textH;
                 SDL_QueryTexture(texture, NULL, NULL, &textW, &textH);

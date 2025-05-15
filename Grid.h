@@ -19,6 +19,7 @@ struct Cell
     SDL_Rect rect;
 };
 
+void renderScore(SDL_Renderer* renderer, TTF_Font* font, int score, int x, int y);
 void drawBoard(SDL_Renderer* renderer, int windowWidth, int windowHeight, TTF_Font* font);
 void drawNumber(SDL_Renderer* renderer, TTF_Font* font, const Cell& cell);
 #endif // GRID_H
