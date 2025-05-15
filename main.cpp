@@ -65,10 +65,10 @@ int main(int argc, char* argv[])
             SDL_SetRenderDrawColor(renderer, 220, 218, 209, 255);
             SDL_RenderClear(renderer);
             backGround.renderer(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
-            scoreBox.renderer(149, 95, 140, 80);
-            bestBox.renderer(410, 95, 140, 80);
-            renderScore(renderer, font, score, 221, 138);
-            renderScore(renderer, font, best, 481, 138);
+            scoreBox.renderer(180, 32, 140, 120);
+            bestBox.renderer(470, 32, 140, 120);
+            renderScore(renderer, font, score, 250, 95);
+            renderScore(renderer, font, best, 540, 95);
 
             drawBoard(renderer, SCREEN_WIDTH, SCREEN_HEIGHT, font);
 
