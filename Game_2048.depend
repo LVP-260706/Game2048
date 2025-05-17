@@ -19,20 +19,21 @@
 1742726029 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\window.cpp
 	"Window.h"
 
-1742725948 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\image.cpp
+1747491888 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\image.cpp
 	"Image.h"
 
-1747463298 c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\image.h
+1747491886 c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\image.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 
-1747463365 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\main.cpp
+1747493247 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\main.cpp
 	"Window.h"
 	"Image.h"
 	"Grid.h"
 	"Logic.h"
 	<string>
+	<SDL_mixer.h>
 
 1744738891 c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\window.h
 	<iostream>
@@ -52,7 +53,7 @@
 	<map>
 	<vector>
 
-1747435216 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\logic.cpp
+1747463554 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\logic.cpp
 	"Logic.h"
 
 1744741381 c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\logic.h

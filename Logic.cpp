@@ -194,7 +194,7 @@ void resetGame()
     spawnRandomNumber();
 }
 
-void handleKey(SDL_Event event, bool& gameOver, bool& win)
+void handleKey(const SDL_Event event, bool& gameOver, bool& win)
 {
     if (!gameOver && !win)
     {
@@ -216,4 +216,12 @@ void handleKey(SDL_Event event, bool& gameOver, bool& win)
         if (checkWin()) win = true;
         if (!canMove()) gameOver = true;
     }
+}
+
+bool mouseClickInside(const SDL_Event& event, const SDL_Rect& rect)
+{
+    int mouseX = event.button.x;
+    int mouseY = event.button.y;
+    return (mouseX >= rect.x && mouseX <= rect.x + rect.w &&
+                mouseY >= rect.y && mouseY <= rect.y + rect.h);
 }

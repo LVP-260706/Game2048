@@ -4,6 +4,7 @@
 #include "Logic.h"
 
 #include <string>
+#include <SDL_mixer.h>
 using namespace std;
 const int SCREEN_WIDTH = 800, SCREEN_HEIGHT = 600;
 
@@ -27,6 +28,21 @@ int main(int argc, char* argv[])
     Image homeButton("Image/home.png", renderer);
     SDL_Rect homeButtonRect = {SCREEN_WIDTH / 2 + 20, SCREEN_HEIGHT - 150, 100, 100};
 
+    Image musicButtonOn("Image/musicOn.png", renderer);
+    Image musicButtonOff("Image/musicOff.png", renderer);
+    SDL_Rect musicButtonRect = {SCREEN_WIDTH / 2 - 55, 50, 100, 96};
+    bool musicOn = true;
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    {
+        cerr << Mix_GetError() << endl;
+    }
+    Mix_Music* bgMusic = Mix_LoadMUS("Image/mainMusic.mp3");
+    if (bgMusic == nullptr)
+    {
+        cerr << Mix_GetError() << endl;
+    }
+    Mix_PlayMusic(bgMusic, -1);
+
     TTF_Font* font = TTF_OpenFont("Image/Roboto-Regular.ttf", 25);
     if (!font)
     {
@@ -47,10 +63,7 @@ int main(int argc, char* argv[])
             if (event.type == SDL_QUIT) running = false;
             if (startMenu && event.type == SDL_MOUSEBUTTONDOWN)
             {
-                int mouseX = event.button.x;
-                int mouseY = event.button.y;
-                if (mouseX >= startButtonRect.x && mouseX <= startButtonRect.x + startButtonRect.w &&
-                        mouseY >= startButtonRect.y && mouseY <= startButtonRect.y + startButtonRect.h)
+                if (mouseClickInside(event, startButtonRect))
                 {
                     cerr << "Start Game" << endl;
                     startMenu = false;
@@ -65,21 +78,33 @@ int main(int argc, char* argv[])
             }
             else if ((gameOver || win) && event.type == SDL_MOUSEBUTTONDOWN)
             {
-                int mouseX = event.button.x;
-                int mouseY = event.button.y;
-                if (mouseX >= restartButtonRect.x && mouseX <= restartButtonRect.x + restartButtonRect.w &&
-                        mouseY >= restartButtonRect.y && mouseY <= restartButtonRect.y + restartButtonRect.h)
+                if (mouseClickInside(event, restartButtonRect))
                 {
                     cerr << "Restart Game" << endl;
                     resetGame();
                     gameOver = false;
                     win = false;
                 }
-                if (mouseX >= homeButtonRect.x && mouseX <= homeButtonRect.x + homeButtonRect.w &&
-                        mouseY >= homeButtonRect.y && mouseY <= homeButtonRect.y + homeButtonRect.h)
+                if (mouseClickInside(event, homeButtonRect))
                 {
                     cerr << "Menu" << endl;
                     startMenu = true;
+                }
+            }
+            else if (event.type == SDL_MOUSEBUTTONDOWN)
+            {
+                if (mouseClickInside(event, musicButtonRect))
+                {
+                    musicOn = !musicOn;
+                    if (musicOn)
+                    {
+                        Mix_VolumeMusic(MIX_MAX_VOLUME);
+                        cerr << "Music ON\n";
+                    } else
+                    {
+                        Mix_VolumeMusic(0);
+                        cerr << "Music OFF\n";
+                    }
                 }
             }
         }
@@ -95,6 +120,8 @@ int main(int argc, char* argv[])
             bestBox.renderer(470, 32, 140, 120);
             renderScore(renderer, font, score, 250, 95);
             renderScore(renderer, font, best, 540, 95);
+            if (musicOn) musicButtonOn.renderer(musicButtonRect.x, musicButtonRect.y, musicButtonRect.w, musicButtonRect.h);
+            else musicButtonOff.renderer(musicButtonRect.x, musicButtonRect.y, musicButtonRect.w, musicButtonRect.h);
 
             drawBoard(renderer, SCREEN_WIDTH, SCREEN_HEIGHT, font);
 
@@ -117,6 +144,8 @@ int main(int argc, char* argv[])
         SDL_RenderPresent(renderer);
     }
 
+    Mix_FreeMusic(bgMusic);
+    Mix_CloseAudio();
     TTF_CloseFont(font);
     return 0;
 }
