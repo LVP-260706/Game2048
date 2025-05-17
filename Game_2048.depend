@@ -22,12 +22,12 @@
 1742725948 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\image.cpp
 	"Image.h"
 
-1742725898 c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\image.h
+1747463298 c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\image.h
 	<iostream>
 	<SDL.h>
 	<SDL_image.h>
 
-1747331088 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\main.cpp
+1747463365 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\main.cpp
 	"Window.h"
 	"Image.h"
 	"Grid.h"
@@ -52,9 +52,16 @@
 	<map>
 	<vector>
 
-1744861536 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\logic.cpp
+1747435216 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\logic.cpp
 	"Logic.h"
 
 1744741381 c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\logic.h
 	"Grid.h"
+
+1747462824 source:c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\musicmanager.cpp
+	"musicManager.h"
+
+1747462858 c:\users\pc\onedrive\máy tính\laptrinhnangcao\game2048\musicmanager.h
+	<SDL_mixer.h>
+	<iostream>
 

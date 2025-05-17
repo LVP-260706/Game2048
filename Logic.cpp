@@ -216,23 +216,4 @@ void handleKey(SDL_Event event, bool& gameOver, bool& win)
         if (checkWin()) win = true;
         if (!canMove()) gameOver = true;
     }
-    else if (gameOver || win)
-    {
-        if (event.key.keysym.sym == SDLK_r)
-        {
-            resetGame();
-            gameOver = false;
-            win = false;
-        }
-    }
-/*    else if (win)
-    {
-        if (event.key.keysym.sym == SDLK_r)
-        {
-            resetGame();
-            win = false;
-        }
-        else if (event.key.keysym.sym == SDLK_c) win = false;
-    }
-*/
 }
