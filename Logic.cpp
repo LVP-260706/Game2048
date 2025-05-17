@@ -1,4 +1,7 @@
 #include "Logic.h"
+#include <fstream>
+#include <iostream>
+using namespace std;
 
 int score = 0;
 int best = 0;
@@ -71,7 +74,6 @@ void moveLeft()
     }
     if (moved)
     {
-        if (score > best) best = score;
         spawnRandomNumber();
     }
 }
@@ -99,7 +101,6 @@ void moveRight()
     }
     if (moved)
     {
-        if (score > best) best = score;
         spawnRandomNumber();
     }
 }
@@ -127,7 +128,6 @@ void moveUp()
     }
     if (moved)
     {
-        if (score > best) best = score;
         spawnRandomNumber();
     }
 }
@@ -155,7 +155,6 @@ void moveDown()
     }
     if (moved)
     {
-        if (score > best) best = score;
         spawnRandomNumber();
     }
 }
@@ -224,4 +223,31 @@ bool mouseClickInside(const SDL_Event& event, const SDL_Rect& rect)
     int mouseY = event.button.y;
     return (mouseX >= rect.x && mouseX <= rect.x + rect.w &&
                 mouseY >= rect.y && mouseY <= rect.y + rect.h);
+}
+
+int loadBestScore(const string& filename)
+{
+    ifstream fin(filename);
+    if (fin.is_open())
+    {
+        fin >> best;
+        fin.close();
+    } else
+    {
+        cerr << "Can't open file: " << filename << endl;
+    }
+    return best;
+}
+
+void saveBestScore(const string& filename, int bestScore)
+{
+    ofstream fout(filename);
+    if (fout.is_open())
+    {
+        fout << bestScore;
+        fout.close();
+    } else
+    {
+        cerr << "Can't write file: " << filename << endl;
+    }
 }

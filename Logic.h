@@ -15,4 +15,7 @@ bool checkWin();
 void handleKey(const SDL_Event event, bool& gameOver, bool& win);
 void resetGame();
 bool mouseClickInside(const SDL_Event& event, const SDL_Rect& rect);
+
+int loadBestScore(const std::string& filename);
+void saveBestScore(const std::string& filename, int bestScore);
 #endif // LOGIC_H

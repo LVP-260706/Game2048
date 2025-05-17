@@ -50,6 +50,8 @@ int main(int argc, char* argv[])
         return -1;
     }
 
+    int best = loadBestScore("Image/bestScore.txt");
+
     bool running = true;
     bool gameOver = false;
     bool win = false;
@@ -75,6 +77,11 @@ int main(int argc, char* argv[])
             else if (!startMenu && event.type == SDL_KEYDOWN)
             {
                 handleKey(event, gameOver, win);
+                if (score > best)
+                {
+                    best = score;
+                    saveBestScore("Image/bestScore.txt", best);
+                }
             }
             else if ((gameOver || win) && event.type == SDL_MOUSEBUTTONDOWN)
             {
