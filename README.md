@@ -35,7 +35,7 @@ Game được viết bằng ngôn ngữ C++ và sử dụng thư viện SDL2
   - Thuật toán sinh số ngẫu nhiên: https://www.youtube.com/watch?v=faUM8Xrod-I
   - Âm thanh: https://www.youtube.com/watch?v=bZA9fPmFok0
   - Hình ảnh: https://www.canva.com/
-  - Code mẫu
+  - Code mẫu, lazy foo
   - Mức độ sử dụng AI: 30%
 ### Hướng phát triển
   - Thêm các cài đặt về âm thanh, danh sách điểm cao của các lần chơi ở Menu
