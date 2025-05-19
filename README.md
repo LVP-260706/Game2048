@@ -1,7 +1,7 @@
 # Game2048
 Họ và tên: Lâm Việt Phúc  
 Mã sinh viên: 24021597  
-Mức điểm mong muốn: 8
+Mức điểm mong muốn: 7.5 - 8.5
 ## Giới thiệu chung
 2048 được lấy cảm hứng từ https://play2048.co/  
 Game được viết bằng ngôn ngữ C++ và sử dụng thư viện SDL2
