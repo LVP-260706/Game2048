@@ -36,7 +36,7 @@ Game được viết bằng ngôn ngữ C++ và sử dụng thư viện SDL2
   - Âm thanh: https://www.youtube.com/watch?v=bZA9fPmFok0
   - Hình ảnh: https://www.canva.com/
   - Code mẫu, lazy foo
-  - Mức độ sử dụng AI: 30%
+  - Mức độ sử dụng AI: 15%
 ### Hướng phát triển
   - Thêm các cài đặt về âm thanh, danh sách điểm cao của các lần chơi ở Menu
   - Thêm các hiệu ứng khi các ô di chuyển
